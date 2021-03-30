@@ -1,0 +1,17 @@
+services:
+  db:
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_DB: datab
+      POSTGRES_PASSWORD: test1234
+    image: postgres
+  app:
+    build: .
+    environment:
+      RAILS_ENV: development
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
